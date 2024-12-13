@@ -33,3 +33,7 @@ Dessa forma, as interações na página já estarão sendo registradas na base d
 ### 💻 Monitoramento
 
 É possível visualizar os registros das interações em tempo real acessando http://localhost:{FRONTEND_PORT}/monitor.
+
+### 🛢️ Banco de dados
+
+O banco é acessível a partir da porta 5432. As demais configurações estão disponíveis no arquivo `.env`.
