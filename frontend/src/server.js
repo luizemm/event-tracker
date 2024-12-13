@@ -12,7 +12,9 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/monitor", (_req, res) => {
-  res.render("app-events-monitor");
+  res.render("app-events-monitor", {
+    WS_RECEIVER_URL: process.env.WS_RECEIVER_URL || "",
+  });
 });
 
 app.get("/ws-sender.js", (_req, res) => {

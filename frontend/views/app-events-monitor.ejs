@@ -45,24 +45,24 @@
       <h1>Application Events</h1>
     </header>
     <div id="logs-container"></div>
+    <script>
+      const socket = new WebSocket("<%=WS_RECEIVER_URL%>");
+
+      socket.addEventListener("open", () => {
+        console.log("websocket connection opened");
+      });
+
+      socket.addEventListener("message", (event) => {
+        const display = document.querySelector("#logs-container");
+
+        const logElement = document.createElement("div");
+        logElement.classList.add("log-entry");
+        logElement.classList.add("info");
+        logElement.appendChild(document.createTextNode(event.data));
+
+        display.appendChild(logElement);
+        logElement.scrollIntoView({ behavior: "auto", block: "end" });
+      });
+    </script>
   </body>
-  <script>
-    const socket = new WebSocket("ws://localhost:8080/ws?type=receiver");
-
-    socket.addEventListener("open", () => {
-      console.log("websocket connection opened");
-    });
-
-    socket.addEventListener("message", (event) => {
-      const display = document.querySelector("#logs-container");
-
-      const logElement = document.createElement("div");
-      logElement.classList.add("log-entry");
-      logElement.classList.add("info");
-      logElement.appendChild(document.createTextNode(event.data));
-
-      display.appendChild(logElement);
-      logElement.scrollIntoView({ behavior: "auto", block: "end" });
-    });
-  </script>
 </html>

@@ -15,6 +15,7 @@ services:
     environment:
       PORT: ${FRONTEND_PORT}
       WS_SENDER_URL: "ws://${BACKEND_BASE_URL}/ws?type=sender"
+      WS_RECEIVER_URL: "ws://${BACKEND_BASE_URL}/ws?type=receiver"
     ports:
       - ${FRONTEND_PORT}:${FRONTEND_PORT}
     depends_on:
