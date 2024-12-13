@@ -1,0 +1,7 @@
+package env
+
+const (
+	DB_URL_CONNECTION = "DB_URL_CONNECTION"
+    DB_DRIVER_NAME = "DB_DRIVER_NAME"
+	PORT = "PORT"
+)

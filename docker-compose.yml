@@ -1,0 +1,36 @@
+services:
+  back:
+    build: backend
+    environment:
+      DB_URL_CONNECTION: postgres://${DB_USER}:${DB_PASSWORD}@db/${DB_INSTANCE}?sslmode=disable
+      DB_DRIVER_NAME: postgres
+      PORT: ${BACKEND_PORT}
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    depends_on:
+      - db
+
+  front:
+    build: frontend
+    environment:
+      PORT: ${FRONTEND_PORT}
+      WS_SENDER_URL: "ws://${BACKEND_BASE_URL}/ws?type=sender"
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    depends_on:
+      - back
+      - db
+
+  db:
+    image: postgres:17.2-alpine3.20
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_INSTANCE}
+    volumes:
+      - ./tmp/database:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432

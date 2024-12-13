@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Logs</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      header {
+        background-color: #0078d4;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+      }
+      #logs-container {
+        padding: 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        border-radius: 8px;
+        max-width: 80%;
+      }
+      .log-entry {
+        padding: 10px;
+        margin: 5px 0;
+        border-left: 4px solid #ccc;
+        background: #f9f9f9;
+        border-radius: 4px;
+      }
+      .log-entry.info {
+        border-color: #2196f3;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Application Events</h1>
+    </header>
+    <div id="logs-container"></div>
+  </body>
+  <script>
+    const socket = new WebSocket("ws://localhost:8080/ws?type=receiver");
+
+    socket.addEventListener("open", () => {
+      console.log("websocket connection opened");
+    });
+
+    socket.addEventListener("message", (event) => {
+      const display = document.querySelector("#logs-container");
+
+      const logElement = document.createElement("div");
+      logElement.classList.add("log-entry");
+      logElement.classList.add("info");
+      logElement.appendChild(document.createTextNode(event.data));
+
+      display.appendChild(logElement);
+      logElement.scrollIntoView({ behavior: "auto", block: "end" });
+    });
+  </script>
+</html>
