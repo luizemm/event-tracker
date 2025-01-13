@@ -15,7 +15,7 @@ import (
 type WsSenderClient struct {
     conn *websocket.Conn
 
-    receiverManager *WsSenderManager
+    senderManager *WsSenderManager
 
 	createEventUseCase uCreate.CreateEventUseCaseInterface
 	forwardEventUseCase uForward.ForwardEventUseCaseInterface
@@ -23,7 +23,7 @@ type WsSenderClient struct {
 
 type WsSenderClientProps struct {
 	Conn *websocket.Conn
-    ReceiverManager *WsSenderManager
+    SenderManager *WsSenderManager
 	CreateEventUseCase uCreate.CreateEventUseCaseInterface
 	ForwardEventUseCase uForward.ForwardEventUseCaseInterface
 }
@@ -31,7 +31,7 @@ type WsSenderClientProps struct {
 func NewSenderClient(props WsSenderClientProps) *WsSenderClient {
 	return &WsSenderClient{
 		conn: props.Conn,
-		receiverManager: props.ReceiverManager,
+		senderManager: props.SenderManager,
 		createEventUseCase: props.CreateEventUseCase,
 		forwardEventUseCase: props.ForwardEventUseCase,
 	}
@@ -42,9 +42,9 @@ func (c *WsSenderClient) SetConnection(conn *websocket.Conn) {
 }
 
 func (c *WsSenderClient) Execute() {
-	c.receiverManager.register <- c
+	c.senderManager.register <- c
     defer func() {
-		c.receiverManager.unregister <- c
+		c.senderManager.unregister <- c
 		c.conn.Close()
 	}()
 	for {
@@ -54,7 +54,7 @@ func (c *WsSenderClient) Execute() {
 
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err) {
-				log.Logger.Error("Receiver client closed", slog.Any("error", err))
+				log.Logger.Error("Sender client closed", slog.Any("error", err))
 				break
 			}
 			

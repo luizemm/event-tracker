@@ -9,20 +9,20 @@ import (
 
 type WsReceiverClient struct {
     conn *websocket.Conn
-    senderManager *WsReceiverManager
+    receiverManager *WsReceiverManager
     send chan event.EventDto
 }
 
 type WsReceiverClientProps struct {
 	Conn *websocket.Conn
-    SenderManager *WsReceiverManager
+    ReceiverManager *WsReceiverManager
 	Send chan event.EventDto
 }
 
 func NewReceiverClient(props WsReceiverClientProps) *WsReceiverClient {
 	return &WsReceiverClient {
 		conn: props.Conn,
-		senderManager: props.SenderManager,
+		receiverManager: props.ReceiverManager,
 		send: props.Send,
 	}
 }
@@ -32,9 +32,9 @@ func (c *WsReceiverClient) SetConnection(conn *websocket.Conn) {
 }
 
 func (c *WsReceiverClient) Execute() {
-	c.senderManager.register <- c
+	c.receiverManager.register <- c
 	defer func() {
-        c.senderManager.unregister <- c
+        c.receiverManager.unregister <- c
 		c.conn.Close()
 	}()
 	for {
