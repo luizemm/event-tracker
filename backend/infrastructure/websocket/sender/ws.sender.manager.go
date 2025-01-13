@@ -1,7 +1,7 @@
 package sender
 
 import (
-	"github.com/luizemm/data-collector/infrastructure/log"
+	"github.com/luizemm/event-tracker/infrastructure/log"
 )
 
 type WsSenderManager struct {

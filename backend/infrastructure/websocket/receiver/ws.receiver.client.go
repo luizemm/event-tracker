@@ -4,7 +4,7 @@ import (
 	encJson "encoding/json"
 
 	"github.com/gorilla/websocket"
-	"github.com/luizemm/data-collector/usecase/event"
+	"github.com/luizemm/event-tracker/usecase/event"
 )
 
 type WsReceiverClient struct {

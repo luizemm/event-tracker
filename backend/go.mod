@@ -1,4 +1,4 @@
-module github.com/luizemm/data-collector
+module github.com/luizemm/event-tracker
 
 go 1.23.3
 

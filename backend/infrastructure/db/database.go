@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/luizemm/data-collector/infrastructure/env"
-	"github.com/luizemm/data-collector/infrastructure/log"
+	"github.com/luizemm/event-tracker/infrastructure/env"
+	"github.com/luizemm/event-tracker/infrastructure/log"
 )
 
 func OpenDatabase() *sql.DB {

@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/luizemm/data-collector/domain/event"
-	"github.com/luizemm/data-collector/infrastructure/log"
+	"github.com/luizemm/event-tracker/domain/event"
+	"github.com/luizemm/event-tracker/infrastructure/log"
 )
 
 type EventDb struct {

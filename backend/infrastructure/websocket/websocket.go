@@ -9,14 +9,14 @@ import (
 
 	"github.com/gorilla/websocket"
 	_ "github.com/lib/pq"
-	"github.com/luizemm/data-collector/infrastructure/db"
-	"github.com/luizemm/data-collector/infrastructure/env"
-	"github.com/luizemm/data-collector/infrastructure/log"
-	"github.com/luizemm/data-collector/infrastructure/websocket/receiver"
-	"github.com/luizemm/data-collector/infrastructure/websocket/sender"
-	"github.com/luizemm/data-collector/usecase/event"
-	"github.com/luizemm/data-collector/usecase/event/create"
-	"github.com/luizemm/data-collector/usecase/event/forward"
+	"github.com/luizemm/event-tracker/infrastructure/db"
+	"github.com/luizemm/event-tracker/infrastructure/env"
+	"github.com/luizemm/event-tracker/infrastructure/log"
+	"github.com/luizemm/event-tracker/infrastructure/websocket/receiver"
+	"github.com/luizemm/event-tracker/infrastructure/websocket/sender"
+	"github.com/luizemm/event-tracker/usecase/event"
+	"github.com/luizemm/event-tracker/usecase/event/create"
+	"github.com/luizemm/event-tracker/usecase/event/forward"
 )
 
 func getPort() string {
@@ -73,12 +73,12 @@ func Init(database *sql.DB) {
         switch typ {
         case "receiver":
             wsClient = receiver.NewReceiverClient(receiver.WsReceiverClientProps{
-				SenderManager: receiverManager,
+				ReceiverManager: receiverManager,
 				Send: make(chan event.EventDto, 200),
 			})
 		case "sender":
 			wsClient = sender.NewSenderClient(sender.WsSenderClientProps{
-				ReceiverManager: senderManager,
+				SenderManager: senderManager,
 				ForwardEventUseCase: forwardEventUseCase,
 				CreateEventUseCase: createEventUseCase,
 			})

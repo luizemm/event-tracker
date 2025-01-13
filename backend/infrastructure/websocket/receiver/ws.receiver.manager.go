@@ -1,8 +1,8 @@
 package receiver
 
 import (
-	"github.com/luizemm/data-collector/infrastructure/log"
-	"github.com/luizemm/data-collector/usecase/event"
+	"github.com/luizemm/event-tracker/infrastructure/log"
+	"github.com/luizemm/event-tracker/usecase/event"
 )
 
 type WsReceiverManager struct {

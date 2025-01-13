@@ -1,8 +1,8 @@
 package forward
 
 import (
-	"github.com/luizemm/data-collector/infrastructure/websocket/receiver"
-	"github.com/luizemm/data-collector/usecase/event"
+	"github.com/luizemm/event-tracker/infrastructure/websocket/receiver"
+	"github.com/luizemm/event-tracker/usecase/event"
 )
 
 type forwardEventUseCase struct {

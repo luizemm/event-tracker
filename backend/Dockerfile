@@ -27,7 +27,7 @@ COPY . .
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
-  -o data-collector
+  -o event-tracker
 
 FROM scratch
 
@@ -37,10 +37,10 @@ WORKDIR /
 
 COPY --from=build-production /etc/passwd /etc/passwd
 
-COPY --from=build-production /app/data-collector data-collector
+COPY --from=build-production /app/event-tracker event-tracker
 
 USER golang
 
 EXPOSE 8080
 
-CMD ["/data-collector"]
+CMD ["/event-tracker"]

@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/luizemm/data-collector/infrastructure/log"
-	"github.com/luizemm/data-collector/usecase/event"
-	uCreate "github.com/luizemm/data-collector/usecase/event/create"
-	uForward "github.com/luizemm/data-collector/usecase/event/forward"
+	"github.com/luizemm/event-tracker/infrastructure/log"
+	"github.com/luizemm/event-tracker/usecase/event"
+	uCreate "github.com/luizemm/event-tracker/usecase/event/create"
+	uForward "github.com/luizemm/event-tracker/usecase/event/forward"
 )
 
 type WsSenderClient struct {

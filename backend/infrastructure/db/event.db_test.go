@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	ev "github.com/luizemm/data-collector/domain/event"
-	"github.com/luizemm/data-collector/infrastructure/db"
+	ev "github.com/luizemm/event-tracker/domain/event"
+	"github.com/luizemm/event-tracker/infrastructure/db"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/require"
 )

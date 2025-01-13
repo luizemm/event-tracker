@@ -3,9 +3,9 @@ package create
 import (
 	"log/slog"
 
-	"github.com/luizemm/data-collector/domain/event"
-	"github.com/luizemm/data-collector/infrastructure/log"
-	dto "github.com/luizemm/data-collector/usecase/event"
+	"github.com/luizemm/event-tracker/domain/event"
+	"github.com/luizemm/event-tracker/infrastructure/log"
+	dto "github.com/luizemm/event-tracker/usecase/event"
 )
 
 type createEventUseCase struct {

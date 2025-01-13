@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/luizemm/data-collector/infrastructure/db"
-	"github.com/luizemm/data-collector/infrastructure/websocket"
+	"github.com/luizemm/event-tracker/infrastructure/db"
+	"github.com/luizemm/event-tracker/infrastructure/websocket"
 )
 
 func main() {
